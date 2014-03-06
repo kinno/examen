@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Datos>
-  <nombre>iuy</nombre>
-  <apellidoPaterno>iuy</apellidoPaterno>
-  <apellidoMaterno>iuy</apellidoMaterno>
-  <fechaNacimiento>03/06/2014</fechaNacimiento>
-  <nacionalidad>iu</nacionalidad>
-  <genero>M</genero>
-  <domicilio>iuy</domicilio>
-  <colonia>iuy</colonia>
-  <cp>iuy</cp>
-  <municipio>iuy</municipio>
-  <entidad>iuy</entidad>
-  <celular>iuy</celular>
-  <telefono>iuy</telefono>
-  <mail>iuy</mail>
-</Datos>
+<datos>
+  <persona>
+    <nombre>1</nombre>
+    <aPaterno>1</aPaterno>
+    <aMaterno>1</aMaterno>
+    <fechaN>1</fechaN>
+    <nacionalidad>1</nacionalidad>
+    <genero>M</genero>
+    <domicilio>1</domicilio>
+    <colonia>1</colonia>
+    <cp>1</cp>
+    <municipio>1</municipio>
+    <entidad>1</entidad>
+    <celular>1</celular>
+    <telefono>1</telefono>
+    <mail>1</mail>
+  </persona>
+<persona><nombre>2</nombre><aPaterno>2</aPaterno><aMaterno>2</aMaterno><fechaN>2</fechaN><nacionalidad>2</nacionalidad><genero>M</genero><domicilio>2</domicilio><colonia>2</colonia><cp>2</cp><municipio>2</municipio><entidad>2</entidad><celular>2</celular><telefono>2</telefono><mail>2</mail></persona></datos>

@@ -3,48 +3,93 @@ class Datos{
     function Datos(){
     }
     
-    function guardarDatos($datos){
-        extract($datos);
-        $xml = new DOMDocument('1.0','UTF-8');
-        $root = $xml->createElement('Datos');
-        $root = $xml->appendChild($root);
+    function guardarDatos($form){
+        extract($form);
+        $dom = new DOMDocument('1.0','UTF-8');
+        error_reporting(~E_WARNING);
+            if($dom->load('datos.xml')){
+                
+                $raiz=$dom->documentElement;
+                $datosP = new DOMElement('persona');
+                $datosP = $raiz->appendChild($datosP);
+                $datosP->appendChild($dom->createElement('nombre',$nombre));
+                $datosP->appendChild($dom->createElement('aPaterno',$aPaterno));
+                $datosP->appendChild($dom->createElement('aMaterno',$aMaterno));
+                $datosP->appendChild($dom->createElement('fechaN',$fechaN));
+                $datosP->appendChild($dom->createElement('nacionalidad',$nacionalidad));
+                $datosP->appendChild($dom->createElement('genero',$genero));
+                $datosP->appendChild($dom->createElement('domicilio',$domicilio));
+                $datosP->appendChild($dom->createElement('colonia',$colonia));
+                $datosP->appendChild($dom->createElement('cp',$cp));
+                $datosP->appendChild($dom->createElement('municipio',$municipio));
+                $datosP->appendChild($dom->createElement('entidad',$entidad));
+                $datosP->appendChild($dom->createElement('celular',$celular));
+                $datosP->appendChild($dom->createElement('telefono',$telefono));
+                $datosP->appendChild($dom->createElement('mail',$mail));
+                 $xmlData = $dom->saveXML();
+                $dom->formatOutput = true;
+                $strings_xml = $dom->saveXML();
+                if($dom->save('datos.xml')){
+                    echo 'ok';
+                }
+            }else{
+                
+            $raiz = $dom->createElement('datos');
+            $raiz = $dom->appendChild($raiz);
+            $datosP = $dom->createElement('persona');
+            $datosP = $raiz->appendChild($datosP);
+            $datosP->appendChild($dom->createElement('nombre',$nombre));
+            $datosP->appendChild($dom->createElement('aPaterno',$aPaterno));
+            $datosP->appendChild($dom->createElement('aMaterno',$aMaterno));
+            $datosP->appendChild($dom->createElement('fechaN',$fechaN));
+            $datosP->appendChild($dom->createElement('nacionalidad',$nacionalidad));
+            $datosP->appendChild($dom->createElement('genero',$genero));
+            $datosP->appendChild($dom->createElement('domicilio',$domicilio));
+            $datosP->appendChild($dom->createElement('colonia',$colonia));
+            $datosP->appendChild($dom->createElement('cp',$cp));
+            $datosP->appendChild($dom->createElement('municipio',$municipio));
+            $datosP->appendChild($dom->createElement('entidad',$entidad));
+            $datosP->appendChild($dom->createElement('celular',$celular));
+            $datosP->appendChild($dom->createElement('telefono',$telefono));
+            $datosP->appendChild($dom->createElement('mail',$mail));
+
+            $xmlData = $dom->saveXML();
+            $dom->formatOutput = true;
+            $strings_xml = $dom->saveXML();
+            if($dom->save('datos.xml')){
+                echo 'ok';
+            }       
+            }
         
-        $nom = $xml->createElement('nombre',$nombre);
-        $nom = $root->appendChild($nom);
-        $ap = $xml->createElement('apellidoPaterno',$aPaterno);
-        $ap = $root->appendChild($ap);
-        $am = $xml->createElement('apellidoMaterno',$aMaterno);
-        $am = $root->appendChild($am);
-        $fecha = $xml->createElement('fechaNacimiento',$fechaN);
-        $fecha = $root->appendChild($fecha);
-        $nac = $xml->createElement('nacionalidad',$nacionalidad);
-        $nac = $root->appendChild($nac);
-        $gen = $xml->createElement('genero',$genero);
-        $gen = $root->appendChild($gen);
-        $dom = $xml->createElement('domicilio',$domicilio);
-        $dom = $root->appendChild($dom);
-        $col = $xml->createElement('colonia',$colonia);
-        $col = $root->appendChild($col);
-        $cP = $xml->createElement('cp',$cp);
-        $cP = $root->appendChild($cP);
-        $mun = $xml->createElement('municipio',$municipio);
-        $mun = $root->appendChild($mun);
-        $ent = $xml->createElement('entidad',$entidad);
-        $ent = $root->appendChild($ent);
-        $cel = $xml->createElement('celular',$celular);
-        $cel = $root->appendChild($cel);
-        $tel = $xml->createElement('telefono',$telefono);
-        $tel = $root->appendChild($tel);
-        $mal = $xml->createElement('mail',$mail);
-        $mal = $root->appendChild($mal);
-        
-        $xml->formatOutput=true;
-        $string_xml = $xml->saveXML();
-        if($xml->save('datos.xml')){
-            echo 'ok';
-        }else{
-            echo 'error';
+    }
+    
+    function recuperaDatos(){
+      
+        $dom = new DOMDocument('1.0','UTF-8');
+        $dom->load('datos.xml');
+        $personas = $dom->getElementsByTagName("persona");
+        $datos =[];
+        $i=0;
+        foreach ($personas as $persona) {
+           $nombres = $persona->getElementsByTagName("nombre");
+           $nombre = $nombres->item(0)->nodeValue;
+           $datos[$i]['nombre']=$persona->getElementsByTagName("nombre")->item(0)->nodeValue;
+           $datos[$i]['aPaterno']=$persona->getElementsByTagName("aPaterno")->item(0)->nodeValue;
+           $datos[$i]['aMaterno']=$persona->getElementsByTagName("aMaterno")->item(0)->nodeValue;
+           $datos[$i]['fechaN']=$persona->getElementsByTagName("fechaN")->item(0)->nodeValue;
+           $datos[$i]['nacionalidad']=$persona->getElementsByTagName("nacionalidad")->item(0)->nodeValue;
+           $datos[$i]['genero']=$persona->getElementsByTagName("genero")->item(0)->nodeValue;
+           $datos[$i]['domicilio']=$persona->getElementsByTagName("domicilio")->item(0)->nodeValue;
+           $datos[$i]['colonia']=$persona->getElementsByTagName("colonia")->item(0)->nodeValue;
+           $datos[$i]['cp']=$persona->getElementsByTagName("cp")->item(0)->nodeValue;
+           $datos[$i]['municipio']=$persona->getElementsByTagName("municipio")->item(0)->nodeValue;
+           $datos[$i]['entidad']=$persona->getElementsByTagName("entidad")->item(0)->nodeValue;
+           $datos[$i]['celular']=$persona->getElementsByTagName("celular")->item(0)->nodeValue;
+           $datos[$i]['telefono']=$persona->getElementsByTagName("telefono")->item(0)->nodeValue;
+           $datos[$i]['mail']=$persona->getElementsByTagName("mail")->item(0)->nodeValue;
+           $i++;
         }
+        return $datos;
         
     }
 }

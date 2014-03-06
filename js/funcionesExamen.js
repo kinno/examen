@@ -18,6 +18,10 @@ function panelRegistrar(){
 }
 
 function panelConsultar(){
+ var url="controlador/recuperarDatos.php";
+ $.post(url,{},function(response){
+     $("#contenedorConsultar").html(response);
+ });
  $("#contenedorRegistrar").hide();   
  $("#contenedorConsultar").toggle('slide');
 }
@@ -25,10 +29,10 @@ function panelConsultar(){
 function guardarDatos(){
     var url="controlador/guardarDatos.php";
     $.post(url,$("#registro").serialize(),function(response){
-        if(response=='ok'){
+            if(response=='ok'){
            $("#respResultados").html('<div style="font-size: 45px; text-align: center;">¡Datos registrados!</div>'); 
            setTimeout(function(){location.reload()},2000);
-        }
+            }
         
     });
 }
