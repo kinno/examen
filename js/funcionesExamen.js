@@ -21,6 +21,7 @@ function panelConsultar(){
  var url="controlador/recuperarDatos.php";
  $.post(url,{},function(response){
      $("#contenedorConsultar").html(response);
+     $("#acordion").accordion();
  });
  $("#contenedorRegistrar").hide();   
  $("#contenedorConsultar").toggle('slide');

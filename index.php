@@ -111,7 +111,7 @@
             </form>
             <center><span id="guardar" onclick="guardarDatos()">Guardar</span></center>
         </div>
-        <div id="contenedorConsultar"></div>
+        <div id="contenedorConsultar" class="ui-widget ui-widget-content" style="display:none"></div>
         <div id="respResultados"></div>
     </body>
 </html>

@@ -1,7 +1,12 @@
 #btnsMenu{
     margin-left: 42%;
 }
-#contenedorRegistrar{
+#contenedorRegistrar {
+    margin-top: 15px;
+    padding:5px;
+    width:auto;
+}
+#contenedorConsultar {
     margin-top: 15px;
     padding:5px;
     width:auto;

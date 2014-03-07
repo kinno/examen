@@ -66,6 +66,7 @@ class Datos{
     function recuperaDatos(){
       
         $dom = new DOMDocument('1.0','UTF-8');
+        error_reporting(~E_WARNING);
         $dom->load('datos.xml');
         $personas = $dom->getElementsByTagName("persona");
         $datos =[];
